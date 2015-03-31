@@ -1,0 +1,292 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+html,
+body {
+    height: 100%;
+    background: #00a7e0;
+}
+
+h1 {
+    .font-size(60px);
+    color: #56565a;
+    text-shadow: none;
+}
+
+#outer-wrapper {
+    border: none;
+}
+
+#wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#masthead {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    padding: 0;
+    height: 124px;
+}
+
+main {
+    header,
+    .content-container section {
+        width: @widthDesktop - (@gridGutterWidth * 2);
+        margin: 0 auto;
+    }
+}
+
+header[role="content-info"] {
+    text-align: center;
+
+    p {
+        .open-sans-light;
+        .font-size(28px);
+        color: #56565a;
+        max-width: 27em;
+        margin: @baseLine auto (@baseLine * 2);
+    }
+
+    img {
+        display: block;
+        margin: (@baseLine * 2) auto 0;
+    }
+}
+
+.button-get-firefox {
+    background: #6fbe4a;
+    color: #fff;
+    .font-size(18px);
+    border-radius: 6px;
+    padding: .6em 3em;
+    .transition(background .1s ease-in-out);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        background: lighten(#6fbe4a, 2%);
+        text-decoration: none;
+    }
+}
+
+.content-container {
+    background: #00a7e0;
+    color: #fff;
+
+    h2 {
+        color: #fff;
+        text-shadow: none;
+        .font-size(28px);
+    }
+}
+
+.features {
+    position: relative;
+    text-align: center;
+    padding-bottom: @baseLine * 4;
+    .clearfix();
+
+    ul {
+        position: relative;
+        list-style-type: none;
+        margin: 0;
+        padding: (@baseLine * 2) 0;
+
+        li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 33%;
+
+            h2 {
+                margin-bottom: @baseLine;
+                padding: 0 @baseLine;
+                line-height: 100%;
+
+                img {
+                    vertical-align: middle;
+                    margin-right: .3em;
+                }
+            }
+
+            p {
+                padding: 0 @baseLine;
+                .font-size(@largeFontSize);
+                color: #d7ecf8;
+            }
+        }
+    }
+
+    figure {
+        width: 220px;
+        text-align: center;
+        padding-top: @baseLine * 3;
+
+        figcaption {
+            .open-sans-light;
+            .font-size(20px);
+            color: #d7ecf8;
+            margin-bottom: @baseLine;
+        }
+
+        &.busy {
+            position: relative;
+            float: left;
+
+            &:after {
+                position: absolute;
+                top: 230px;
+                right: -110px;
+                content: '';
+                width: 41px;
+                height: 42px;
+                background: url(/media/img/firefox/reading/arrow-right.png) top left no-repeat;
+            }
+        }
+
+        &.clean {
+            float: right;
+        }
+    }
+
+    &.compare {
+        width: 622px;
+        margin: 0 auto;
+    }
+}
+
+.html-rtl {
+    .features {
+        ul li h2 img {
+            margin-right: 0;
+            margin-left: .3em;
+        }
+
+        figure {
+            &.busy {
+                float: right;
+
+                &:after {
+                    right: auto;
+                    left: -110px;
+                    background: url(/media/img/firefox/reading/arrow-left.png) top left no-repeat;
+                }
+            }
+
+            &.clean {
+                float: left;
+            }
+        }
+    }
+}
+
+.js {
+
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    #masthead {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    main {
+        header,
+        .content-container section {
+            width: @widthTablet - (@gridGutterWidth * 2);
+        }
+    }
+
+    .features ul li {
+        float: none;
+        width: auto;
+        margin-bottom: @baseLine * 2;
+
+        h2, p {
+            padding: 0;
+        }
+
+        p {
+            max-width: 35em;
+            margin: @baseLine auto;
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    h1 {
+        .font-size(48px);
+    }
+
+    header[role="content-info"] p {
+        .font-size(24px);
+    }
+
+    #masthead {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    main {
+        header,
+        .content-container section {
+            width: @widthMobileLandscape - (@gridGutterWidth * 2);
+        }
+    }
+
+    .features.compare {
+        width: 100%;
+        margin: 0 auto;
+
+        figure {
+            width: 220px;
+            margin: 0 auto;
+
+            img {
+                display: inline;
+            }
+
+            &.busy {
+                float: none;
+                margin: 0 auto @baseLine;
+
+                &:after {
+                    top: auto;
+                    right: 90px;
+                    bottom: -60px;
+                    background: url(/media/img/firefox/reading/arrow-down.png) top left no-repeat;
+                }
+            }
+
+            &.clean {
+                float: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    h1 {
+        .font-size(36px);
+    }
+
+    header[role="content-info"] p {
+        .font-size(20px);
+    }
+
+    #masthead {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    main {
+        header,
+        .content-container section {
+            width: @widthMobile - (@gridGutterWidth * 2);
+        }
+    }
+}

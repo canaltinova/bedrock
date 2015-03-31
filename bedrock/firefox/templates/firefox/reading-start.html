@@ -1,0 +1,96 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{# L10n: This string is used in both the <title> and as the main heading in Reader View #}
+{% block page_title %}{{_('Hello, awesome reading.')}}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{_('Enjoy a cleaner and more convenient reading experience on the Web with Reader View and Reading List in Firefox.')}}{% endblock %}
+{% block body_class %}rays-light-blue{% endblock %}
+{% block body_id %}reader{% endblock %}
+
+{% block site_css %}
+  {{ super() }}
+  {% stylesheet 'firefox_reading_start' %}
+{% endblock %}
+
+{% block string_data %}
+{# L10n: This is an alternate sub heading shown to non-Firefox users #}
+data-sub-head="{{_('Download the latest version of Firefox to enjoy a cleaner and more convenient reading experience on the Web with Reader View and Reading List.')}}"
+{# L10n: This is download button text shown to non-Firefox users #}
+data-download-btn="{{_('Get Firefox')}}"
+data-download-url="{{ url('firefox.new') }}"
+{# L10n: This is text to convey a web page before entering Reading Mode #}
+data-before="{{_('Messy and cluttered')}}"
+{# L10n: This is text to convey a web page after entering Reading Mode #}
+data-after="{{_('Pleasant and perfect')}}"
+data-firefox-url="{{ url('firefox') }}"
+data-firefox-logo="{{ static('img/firefox/template/header-logo.png') }}"
+data-busy-image="{{ static('img/firefox/reading/busy-page.png') }}"
+data-clean-image="{{ static('img/firefox/reading/clean-page.png') }}"
+{% endblock %}
+
+{% block site_header %}
+<header id="masthead">
+  {% block site_header_logo %}
+    {#<h2><a href="{{ url('firefox') }}"><img src="{{ static('img/firefox/template/header-logo.png') }}" alt="Mozilla Firefox" height="70" width="185"></a></h2>#}
+  {% endblock %}
+</header>
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header role="content-info">
+    {# L10n: The <br> below is for presentational formatting only. #}
+    <h1>{{_('Goodbye, clutter.<br> Hello, awesome reading.')}}</h1>
+    <p>{{_('Enjoy a cleaner and more convenient reading experience on the Web with Reader View and Reading List in Firefox.')}}</p>
+    <img src="{{ static('img/firefox/reading/browser.svg') }}" width="662" alt="">
+  </header>
+  <div class="content-container">
+    <section class="features">
+      <ul>
+        <li>
+          <h2><img src="{{ static('img/firefox/reading/reader-view-icon-circle.svg') }}" width="40" alt=""> {{_('Read it')}}</h2>
+          <p>{{_('Want to read articles clutter-free? Use <strong>Reader View</strong> to put the focus on what matters. Just look for the book icon in your Firefox address bar.')}}</p>
+        </li>
+        <li>
+          <h2><img src="{{ static('img/firefox/reading/reading-list-icon-circle.svg') }}" width="40" alt=""> {{_('Save it')}}</h2>
+          <p>{{_('Short on time? Save articles for later by adding them to your <strong>Reading List</strong>. It’s as simple as clicking the plus sign next to the book icon.')}}</p>
+        </li>
+        <li>
+          <h2><img src="{{ static('img/firefox/reading/sync-icon-circle.svg') }}" width="40" alt=""> {{_('Sync it')}}</h2>
+          <p>{{_('Want to take your Reading List on the go? Sign in to <strong>Sync</strong> to access your saved articles — and more — everywhere you use Firefox.')}}</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<p class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<p class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<p class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<p class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+<p class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'firefox_reading_start' %}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}

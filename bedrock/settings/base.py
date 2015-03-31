@@ -627,6 +627,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_releases_index-bundle.css',
     },
+    'firefox_reading_start': {
+        'source_filenames': (
+            'css/firefox/reading-start.less',
+        ),
+        'output_filename': 'css/firefox_reading_start-bundle.css',
+    },
     'firefox_privacy_tour': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
@@ -1462,6 +1468,12 @@ PIPELINE_JS = {
             'js/base/mozilla-accordion-gatrack.js',
         ),
         'output_filename': 'js/firefox_faq-bundle.js',
+    },
+    'firefox_reading_start': {
+        'source_filenames': (
+            'js/firefox/reading-start.js',
+        ),
+        'output_filename': 'js/firefox_reading_start-bundle.js',
     },
     'firefox_sync': {
         'source_filenames': (
