@@ -10,6 +10,7 @@
 {% block page_title %}{{ _('Firefox for Android — Mobile Web browser — More ways to customize and protect your privacy') }}{% endblock %}
 {% block page_desc %}{{ _('Only Firefox for Android offers so many ways to make your mobile browsing experience truly your own') }}{% endblock %}
 {% block body_id %}firefox-android{% endblock %}
+{% block body_class %}rays-blue{% endblock %}
 
 {% block site_css %}
   {% stylesheet 'firefox_android' %}
@@ -22,9 +23,9 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('dark') %}
+  {% call fxfamilynav() %}
     <a class="dl-button" id="nav-dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
-      {{ _('Download on Google Play') }}
+      {{ _('Get Firefox for Android') }}
     </a>
   {% endcall %}
 {% endblock %}
@@ -45,12 +46,16 @@
       <p class="lead">
         {{ _('The features you love.') }}
         {{ _('The privacy you trust.') }}
-        {{ _('Our most customizable Firefox for Android yet.') }}
+        {% if l10n_has_tag('android_spring_updates') %}
+          {{ _('The most customizable Firefox for Android yet.') }}
+        {% else %}
+          {{ _('Our most customizable Firefox for Android yet.') }}
+        {% endif %}
       </p>
 
       <div class="dl-button-wrapper">
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
-          {{ _('Download on Google Play') }}
+          {{ _('Get Firefox for Android') }}
         </a>
 
         {#
@@ -58,18 +63,25 @@
           so not wrapped for localization (yet).
         #}
         <p id="sms-link">
-          <a href="{{ url('firefox.sms') }}">Text a download link to my Android phone</a>
+          <a href="{{ url('firefox.sms') }}">
+            {% if l10n_has_tag('android_spring_updates') %}
+              {{ _('Text yourself a link') }}
+            {% else %}
+              {{ _('Text a download link to my Android phone') }}
+            {% endif %}
+          </a>
         </p>
+
+        {% if l10n_has_tag('ios_announce', 'firefox/new') %}
+          <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
+        {% endif %}
       </div>
 
-      {% if l10n_has_tag('ios_announce', 'firefox/new') %}
-        <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
-      {% endif %}
+      <img src="{{ static('img/firefox/android/dude.png') }}" id="intro-android" width="46" height="53" alt="">
 
     </div>{# /.content-primary #}
     <div class="content-secondary">
-      {{ high_res_img('img/firefox/android/phone-intro.png', { 'id': 'intro-phone' }) }}
-      {{ high_res_img('img/firefox/android/the-android.png', { 'id': 'intro-android' }) }}
+      <img src="{{ static('img/firefox/android/phone-tablet.png') }}" id="intro-phone-tablet" width="970" height="800" alt="">
     </div>{# /.content-secondary #}
   </div>{# /.container #}
 </section>
@@ -190,6 +202,29 @@
             <div class="line"></div>
           </div>
         </section>
+        {% if l10n_has_tag('android_spring_updates') and waffle.switch('firefox-reading-list') %}
+          <section class="customize-section" id="reading">
+            <h3 data-accordion-role="tab">{{ _('Read and save articles easily') }}</h3>
+
+            <div data-accordion-role="tabpanel">
+              <p>
+                {{ _('Enjoy a more pleasant reading experience with Reader View and Reading List.') }}
+                {{ _('Access your articles wherever you use Firefox, even when you’re not online.') }}
+              </p>
+
+              <figure>
+                <div class="media-desktop">
+                  {{ high_res_img('firefox/android/customize/desktop-reading-list.jpg', { 'l10n': True, 'alt': 'Enjoy a more pleasant reading experience with Reader View and Reading List.'}) }}
+                </div>
+                <div class="media-mobile">
+                  {{ high_res_img('firefox/android/customize/mobile-reading-list.png', { 'l10n': True, 'alt': 'Enjoy a more pleasant reading experience with Reader View and Reading List.' }) }}
+                </div>
+              </figure>
+
+              <div class="line"></div>
+            </div>
+          </section>
+        {% endif %}
         <section class="customize-section" id="language">
           <h3 data-accordion-role="tab">{{ _('Change your language') }}</h3>
 
@@ -288,7 +323,13 @@
         {% endtrans %}
         </p>
 
-        <a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15">{{ _('See how Private Browsing works') }}</a>
+        <a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15">
+          {% if l10n_has_tag('android_spring_updates') %}
+            {{ _('Learn how to open a private window') }}
+          {% else %}
+            {{ _('See how Private Browsing works') }}
+          {% endif %}
+        </a>
       </li>
       <li id="clear-history">
         <h3>{{ _('Clear history') }}</h3>
@@ -310,7 +351,13 @@
         {% endtrans %}
         </p>
 
-        <a rel="external" href="https://www.youtube.com/watch?v=u6Ww0udnVA0&amp;index=16&amp;list=PLA8ABF6B7A66A0C5E">{{ _('See how Guest Browsing works') }}</a>
+        <a rel="external" href="https://www.youtube.com/watch?v=u6Ww0udnVA0&amp;index=16&amp;list=PLA8ABF6B7A66A0C5E">
+          {% if l10n_has_tag('android_spring_updates') %}
+            {{ _('Learn how to share your browser') }}
+          {% else %}
+            {{ _('See how Guest Browsing works') }}
+          {% endif %}
+        </a>
       </li>
     </ul>
   </div>{# /.container #}
@@ -345,7 +392,7 @@
         <div id="download-content">
           <h3>{{ _('Choose Firefox') }}</h3>
           <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
-            {{ _('Download on Google Play') }}
+            {{ _('Get Firefox for Android') }}
           </a>
 
           <ul>
